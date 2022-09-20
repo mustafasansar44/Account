@@ -1,0 +1,21 @@
+# DOCKER COMPOSE POSTGRESTE HATA VERİYOR SONRA HALLET.
+
+version: '2.7'
+services:
+  backend:
+    image: account:1.0.0
+    container_name: account
+    build: ./
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=account
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345
